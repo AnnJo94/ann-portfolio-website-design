@@ -211,6 +211,16 @@ export function ProjectsSection() {
                 <p className="font-display text-[10px] tracking-[0.3em] text-neon-purple">MY ROLE</p>
                 <p className="mt-1.5 text-sm leading-relaxed text-foreground">{project.role}</p>
               </div>
+              {project.challenges && (
+                <div className="rounded-lg border border-amber-400/25 bg-amber-400/5 p-3.5">
+                  <p className="font-display text-[10px] tracking-[0.3em] text-amber-300">
+                    KEY CHALLENGES & SOLUTIONS
+                  </p>
+                  <p className="mt-1 text-xs leading-relaxed text-foreground/90">
+                    {project.challenges}
+                  </p>
+                </div>
+              )}
               <button
                 type="button"
                 onClick={() => setOpen(true)}

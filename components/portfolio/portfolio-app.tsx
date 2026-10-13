@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 import { AboutSection } from './about-section'
 import { AchievementsSection } from './achievements-section'
 import { ContactSection } from './contact-section'
+import { CredentialsSection } from './credentials-section'
 import { CustomCursor } from './custom-cursor'
 import { EducationSection } from './education-section'
 import { FeedbackSection } from './feedback-section'
@@ -25,14 +26,15 @@ import { WorldSection } from './world-section'
 const SECTION_TO_NAV: Record<string, NavId> = {
   home: 'home',
   about: 'about',
-  education: 'about',
+  education: 'education',
+  credentials: 'credentials',
   skills: 'skills',
   experience: 'experience',
-  services: 'experience',
+  journey: 'experience',
+  services: 'services',
   projects: 'projects',
   lab: 'projects',
   world: 'projects',
-  journey: 'experience',
   achievements: 'achievements',
   feedback: 'feedback',
   contact: 'contact',
@@ -109,6 +111,7 @@ export function PortfolioApp() {
             <HomeSection onNavigate={navigate} />
             <AboutSection />
             <EducationSection />
+            <CredentialsSection />
             <SkillTree />
             <WorkExperienceSection />
             <JourneySection />

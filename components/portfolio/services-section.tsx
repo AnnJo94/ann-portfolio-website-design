@@ -5,13 +5,16 @@ import {
   Box,
   ChevronRight,
   Code2,
+  DollarSign,
   Gamepad2,
   Layers,
   Sparkles,
   Zap,
 } from 'lucide-react'
+import { useState } from 'react'
 import { useInView } from '@/hooks/use-in-view'
 import { cn } from '@/lib/utils'
+import { PricingModal } from './pricing-modal'
 import { SectionHeading } from './section-heading'
 
 export type ServiceItem = {
@@ -80,6 +83,7 @@ export const SERVICES_DATA: ServiceItem[] = [
 
 export function ServicesSection() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.15 })
+  const [showPricing, setShowPricing] = useState(false)
 
   return (
     <section id="services" className="relative px-6 py-24 md:px-10 md:py-32">
@@ -183,7 +187,23 @@ export function ServicesSection() {
             )
           })}
         </div>
+
+        {/* View Pricing Plans Action Button placed at the end of Offered Services */}
+        <div className="mt-12 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setShowPricing(true)}
+            className="group glass hud-corners relative flex items-center gap-3 border border-neon-purple/60 bg-neon-purple/15 px-8 py-4 font-display text-xs font-bold tracking-[0.25em] text-white clip-hud transition-all hover:border-neon-blue/80 hover:bg-neon-purple/25 hover:shadow-[0_0_35px_rgb(164_92_255/0.45)]"
+          >
+            <DollarSign className="size-4 text-neon-blue transition-transform group-hover:scale-125" aria-hidden="true" />
+            <span>VIEW PRICING PLANS</span>
+            <ChevronRight className="size-4 text-neon-purple transition-transform group-hover:translate-x-1" aria-hidden="true" />
+          </button>
+        </div>
       </div>
+
+      {/* Pricing Plans Modal */}
+      <PricingModal isOpen={showPricing} onClose={() => setShowPricing(false)} />
     </section>
   )
 }

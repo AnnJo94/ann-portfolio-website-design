@@ -41,7 +41,7 @@ export function SkillTree() {
     <section id="skills" className="relative px-6 py-24 md:px-10 md:py-32">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          index="03"
+          index="04"
           kicker="SKILL TREE"
           title="SKILLS"
           description="Every skill unlocks the next. Hover or tap a node to trace its path through the tree."

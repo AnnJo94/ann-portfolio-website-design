@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRight, ChevronDown } from 'lucide-react'
+import { ArrowRight, ChevronDown, FileText } from 'lucide-react'
 import type { NavId } from '@/lib/portfolio-data'
 import { HeroHologram } from './hero-hologram'
 
@@ -31,24 +31,26 @@ export function HomeSection({ onNavigate }: { onNavigate: (id: NavId) => void })
             </span>
           </h1>
           <p className="max-w-xl text-pretty text-base leading-relaxed text-muted-foreground animate-rise-in sm:text-lg" style={{ animationDelay: '0.2s' }}>
-            I build gameplay systems and interactive experiences in Unity using C#. From game mechanics and player systems to complete gameplay features, I turn ideas into playable experiences and keep improving with every project.
+            I develop games in Unity using C#, focusing on fun gameplay and creative ideas. I turn ideas into playable experiences and keep improving with every project.
           </p>
           <div className="flex flex-wrap gap-4 animate-rise-in" style={{ animationDelay: '0.3s' }}>
             <button
               type="button"
               onClick={() => onNavigate('projects')}
-              className="group flex items-center gap-3 border border-neon-blue/60 bg-neon-blue/15 px-6 py-3.5 font-display text-xs font-bold tracking-[0.25em] text-white clip-hud transition-all hover:bg-neon-blue/25 hover:shadow-[0_0_30px_rgb(59_164_255/0.45)]"
+              className="group flex min-w-[190px] items-center justify-center gap-3 border border-neon-blue/60 bg-neon-blue/15 px-6 py-3.5 font-display text-xs font-bold tracking-[0.25em] text-white clip-hud transition-all hover:bg-neon-blue/25 hover:shadow-[0_0_30px_rgb(59_164_255/0.45)]"
             >
-              SELECT LEVEL
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              <span>SELECT LEVEL</span>
+              <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </button>
-            <button
-              type="button"
-              onClick={() => onNavigate('about')}
-              className="border border-white/15 px-6 py-3.5 font-display text-xs font-bold tracking-[0.25em] text-muted-foreground clip-hud transition-all hover:border-neon-purple/60 hover:text-white hover:shadow-[0_0_30px_rgb(164_92_255/0.35)]"
+            <a
+              href="/cv.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex min-w-[190px] items-center justify-center gap-3 border border-white/15 px-6 py-3.5 font-display text-xs font-bold tracking-[0.25em] text-muted-foreground clip-hud transition-all hover:border-neon-purple/60 hover:text-white hover:shadow-[0_0_30px_rgb(164_92_255/0.35)]"
             >
-              VIEW PROFILE
-            </button>
+              <span>VIEW CV</span>
+              <FileText className="size-4 shrink-0 text-neon-purple transition-transform group-hover:scale-110" aria-hidden="true" />
+            </a>
           </div>
         </div>
 

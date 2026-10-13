@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import {
   Briefcase,
   Building2,
@@ -7,6 +8,7 @@ import {
   CheckCircle2,
   Clock,
   Cpu,
+  ExternalLink,
   Layers,
   Network,
   Radio,
@@ -24,8 +26,11 @@ export type WorkExperienceItem = {
   number: string
   role: string
   organization: string
+  organizationLogo?: string
+  url?: string
   program: string
   period: string
+  round?: string
   status: 'CURRENTLY ENROLLED' | 'COMPLETED' | 'INTERNSHIP / TRAINING'
   statusType: 'current' | 'completed'
   summary: string
@@ -40,7 +45,10 @@ export const WORK_EXPERIENCES: WorkExperienceItem[] = [
     number: '01',
     role: 'Game Development Trainee',
     organization: 'Digital Egypt Pioneers Initiative (DEPI)',
+    organizationLogo: '/images/depi_logo.png',
+    url: 'https://depi.gov.eg/login',
     program: 'DEPI Game Development Training Program',
+    round: 'Round 5',
     period: 'Currently Enrolled',
     status: 'CURRENTLY ENROLLED',
     statusType: 'current',
@@ -94,7 +102,7 @@ export function WorkExperienceSection() {
     <section id="experience" className="relative px-6 py-24 md:px-10 md:py-32">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          index="04"
+          index="05"
           kicker="CAREER & FIELD OPS"
           title="WORK EXPERIENCE"
           description="Real-world development programs, industry training, and hands-on technical internships."
@@ -137,47 +145,94 @@ export function WorkExperienceSection() {
                       <h3 className="mt-1 font-display text-xl font-black tracking-wide text-white sm:text-2xl md:text-3xl">
                         {item.role}
                       </h3>
-                      <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-muted-foreground sm:text-base">
-                        <span className="flex items-center gap-1.5 font-medium text-foreground">
-                          <Building2 className="size-4 text-neon-blue" aria-hidden="true" />
-                          {item.organization}
-                        </span>
-                        <span className="text-white/20">•</span>
-                        <span className="text-muted-foreground">{item.program}</span>
+                      <div className="mt-1 flex flex-col gap-1 text-sm sm:text-base">
+                        <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
+                          {item.url ? (
+                            <a
+                              href={item.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="group/link inline-flex items-center gap-1.5 font-medium text-foreground transition-colors hover:text-neon-blue hover:underline"
+                              title={`Visit ${item.organization}`}
+                            >
+                              <Building2 className="size-4 text-neon-blue transition-transform group-hover/link:scale-110" aria-hidden="true" />
+                              <span>{item.organization}</span>
+                              <ExternalLink className="size-3 text-neon-blue opacity-75 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-hover/link:opacity-100" aria-hidden="true" />
+                            </a>
+                          ) : (
+                            <span className="flex items-center gap-1.5 font-medium text-foreground">
+                              <Building2 className="size-4 text-neon-blue" aria-hidden="true" />
+                              {item.organization}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Round info directly beneath organization */}
+                        <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+                          <span>{item.program}</span>
+                          {item.round && (
+                            <>
+                              <span className="text-white/20">•</span>
+                              <span className="inline-flex items-center rounded border border-neon-purple/50 bg-neon-purple/15 px-2 py-0.5 font-display text-[9px] tracking-[0.15em] text-neon-purple">
+                                {item.round.toUpperCase()}
+                              </span>
+                            </>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Status Indicator Badge */}
-                  <div className="flex flex-col items-start gap-2 sm:items-end">
-                    <span
-                      className={cn(
-                        'inline-flex items-center gap-1.5 rounded border px-3 py-1 font-display text-[9px] tracking-[0.2em] sm:text-[10px]',
-                        isCurrent
-                          ? 'border-neon-purple/70 bg-neon-purple/15 text-neon-purple shadow-[0_0_15px_rgb(164_92_255/0.4)]'
-                          : 'border-neon-blue/50 bg-neon-blue/10 text-neon-blue',
-                      )}
-                    >
-                      {isCurrent ? (
-                        <>
-                          <span className="relative flex h-2 w-2">
-                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-neon-purple opacity-75" />
-                            <span className="relative inline-flex h-2 w-2 rounded-full bg-neon-purple" />
-                          </span>
-                          {item.status}
-                        </>
-                      ) : (
-                        <>
-                          <CheckCircle2 className="size-3" aria-hidden="true" />
-                          {item.status}
-                        </>
-                      )}
-                    </span>
+                  {/* Right side: Logo + Status Indicator Badge ("CURRENTLY ENROLLED") */}
+                  <div className="flex shrink-0 items-center gap-4">
+                    {item.organizationLogo && (
+                      <a
+                        href={item.url || '#'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/logo relative flex items-center justify-center p-0 transition-all duration-300 focus:outline-none"
+                        title={item.organization}
+                      >
+                        <Image
+                          src={item.organizationLogo}
+                          alt={`${item.organization} Logo`}
+                          width={60}
+                          height={60}
+                          className="h-14 w-auto object-contain transition-transform duration-300 group-hover/logo:scale-110 group-hover/logo:brightness-110"
+                        />
+                      </a>
+                    )}
 
-                    <span className="flex items-center gap-1.5 font-display text-[10px] tracking-[0.2em] text-muted-foreground">
-                      <Calendar className="size-3 text-neon-blue" aria-hidden="true" />
-                      {item.period}
-                    </span>
+                    <div className="flex flex-col items-start gap-1.5 sm:items-end">
+                      <span
+                        className={cn(
+                          'inline-flex items-center gap-1.5 rounded border px-3 py-1 font-display text-[9px] tracking-[0.2em] sm:text-[10px]',
+                          isCurrent
+                            ? 'border-neon-purple/70 bg-neon-purple/15 text-neon-purple shadow-[0_0_15px_rgb(164_92_255/0.4)]'
+                            : 'border-neon-blue/50 bg-neon-blue/10 text-neon-blue',
+                        )}
+                      >
+                        {isCurrent ? (
+                          <>
+                            <span className="relative flex h-2 w-2">
+                              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-neon-purple opacity-75" />
+                              <span className="relative inline-flex h-2 w-2 rounded-full bg-neon-purple" />
+                            </span>
+                            {item.status}
+                          </>
+                        ) : (
+                          <>
+                            <CheckCircle2 className="size-3" aria-hidden="true" />
+                            {item.status}
+                          </>
+                        )}
+                      </span>
+
+                      <span className="flex items-center gap-1 font-display text-[10px] tracking-[0.2em] text-muted-foreground">
+                        <Calendar className="size-3 text-neon-blue" aria-hidden="true" />
+                        {item.period}
+                      </span>
+                    </div>
                   </div>
                 </div>
 

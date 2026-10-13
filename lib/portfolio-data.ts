@@ -1,12 +1,15 @@
 export const NAV_ITEMS = [
-  { id: 'home', label: 'HOME' },
-  { id: 'about', label: 'ABOUT' },
-  { id: 'skills', label: 'SKILLS' },
-  { id: 'experience', label: 'EXPERIENCE' },
-  { id: 'projects', label: 'PROJECTS' },
-  { id: 'achievements', label: 'ACHIEVEMENTS' },
-  { id: 'feedback', label: 'FEEDBACK' },
-  { id: 'contact', label: 'CONTACT' },
+  { id: 'home', label: 'HOME', labelAr: 'الرئيسية' },
+  { id: 'about', label: 'ABOUT', labelAr: 'عني' },
+  { id: 'education', label: 'EDUCATION', labelAr: 'التعليم' },
+  { id: 'credentials', label: 'CREDENTIALS', labelAr: 'الشهادات' },
+  { id: 'skills', label: 'SKILLS', labelAr: 'المهارات' },
+  { id: 'experience', label: 'EXPERIENCE', labelAr: 'الخبرة' },
+  { id: 'services', label: 'SERVICES', labelAr: 'الخدمات' },
+  { id: 'projects', label: 'PROJECTS', labelAr: 'المشاريع' },
+  { id: 'achievements', label: 'ACHIEVEMENTS', labelAr: 'الإنجازات' },
+  { id: 'feedback', label: 'FEEDBACK', labelAr: 'التقييمات' },
+  { id: 'contact', label: 'CONTACT', labelAr: 'تواصل' },
 ] as const
 
 export type NavId = (typeof NAV_ITEMS)[number]['id']
@@ -15,6 +18,12 @@ export const CONTACT_LINKS = {
   email: 'ann.joseph94111@gmail.com',
   linkedin: 'https://www.linkedin.com/in/ann-joseph94/',
   github: 'https://github.com/AnnJo94',
+  upwork: 'https://www.upwork.com/freelancers/~016f353cdac428764a',
+  braintrust: 'https://app.usebraintrust.com/talent/2278060/',
+  khamsat: 'https://khamsat.com/user/ann_joseph94',
+  nafezly: 'https://nafezly.com/u/Ann_Joseph94',
+  kafiil: 'https://kafiil.com/u/Ann_Joseph94',
+  freelanceyard: 'https://freelanceyard.com/en/account/profile',
 }
 
 export type SkillNode = {
@@ -67,6 +76,7 @@ export type Project = {
   technologies: string[]
   description: string
   role: string
+  challenges?: string
   features: string[]
   link?: string
 }
@@ -83,6 +93,8 @@ export const PROJECTS: Project[] = [
     description:
       'A maze exploration game where every run generates a brand-new labyrinth. Navigate to the exit, or watch the built-in solver visualize the shortest path in real time.',
     role: 'Solo developer — game design, programming, and algorithm implementation.',
+    challenges:
+      'Preventing generation deadlocks in large procedural grids while keeping real-time BFS/DFS pathfinding solver visualization smooth without frame drops.',
     features: ['Procedurally generated mazes', 'Pathfinding solver visualization', 'Multiple difficulty levels', 'Move counter and timer'],
     link: 'https://github.com/AnnJo94',
   },
@@ -97,6 +109,8 @@ export const PROJECTS: Project[] = [
     description:
       'A 3D survival prototype built in Unity. Gather resources, manage hunger and health, and survive the night as the world becomes more dangerous.',
     role: 'Gameplay programmer — player systems, survival stats, and enemy behavior.',
+    challenges:
+      'Balancing interconnected hunger, health, and stamina decay curves alongside reactive NavMesh enemy chase AI during dynamic day/night lighting transitions.',
     features: ['Resource gathering and crafting', 'Day / night cycle', 'Health and hunger systems', 'Basic enemy AI'],
     link: 'https://github.com/AnnJo94',
   },
@@ -111,6 +125,8 @@ export const PROJECTS: Project[] = [
     description:
       'The next big level. An open world adventure that brings together everything learned so far — exploration, survival, and intelligent creatures.',
     role: 'Creator — currently in the planning and research phase.',
+    challenges:
+      'Designing a seamless open-world streaming architecture that handles dynamic weather systems and multi-tier creature behavioral trees at consistent frame rates.',
     features: ['Explorable open world', 'Dynamic weather and time', 'Creature AI', 'Story-driven quests'],
   },
 ]

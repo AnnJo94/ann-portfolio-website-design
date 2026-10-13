@@ -38,26 +38,26 @@ function JourneyLevel({ item, index }: { item: (typeof JOURNEY)[number]; index: 
         </div>
       </div>
 
-      {/* Card */}
-      <div
-        className={cn(
-          'pb-14 transition-all duration-700 md:row-start-1',
-          left ? 'md:col-start-1 md:text-right' : 'md:col-start-3',
-        )}
-        style={{ opacity: inView ? 1 : 0.25, transform: inView ? 'none' : `translateX(${left ? '-20px' : '20px'})` }}
-      >
-        <div className={cn('glass hud-corners inline-block w-full max-w-md p-5 text-left', left && 'md:text-right')}>
-          <div className={cn('flex items-center gap-3 font-display text-[10px] tracking-[0.35em]', left && 'md:flex-row-reverse')}>
-            <span className={current ? 'text-neon-purple' : 'text-neon-blue'}>LEVEL {item.level}</span>
-            <span className="text-muted-foreground">{!inView ? 'LOCKED' : current ? 'IN PROGRESS' : 'COMPLETE'}</span>
+        {/* Card */}
+        <div
+          className={cn(
+            'pb-14 transition-all duration-700 md:row-start-1',
+            left ? 'md:col-start-1 md:text-left' : 'md:col-start-3',
+          )}
+          style={{ opacity: inView ? 1 : 0.25, transform: inView ? 'none' : `translateX(${left ? '-20px' : '20px'})` }}
+        >
+          <div className="glass hud-corners inline-block w-full max-w-md p-5 text-left">
+            <div className="flex items-center gap-3 font-display text-[10px] tracking-[0.35em]">
+              <span className={current ? 'text-neon-purple' : 'text-neon-blue'}>LEVEL {item.level}</span>
+              <span className="text-muted-foreground">{!inView ? 'LOCKED' : current ? 'IN PROGRESS' : 'COMPLETE'}</span>
+            </div>
+            <h3 className="mt-2 font-display text-lg font-bold text-white sm:text-xl">{item.title}</h3>
+            <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+            <p className="mt-3 font-display text-[9px] tracking-[0.25em] text-muted-foreground">
+              REWARD: <span className="text-white">{item.reward.toUpperCase()}</span>
+            </p>
           </div>
-          <h3 className="mt-2 font-display text-lg font-bold text-white sm:text-xl">{item.title}</h3>
-          <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-          <p className="mt-3 font-display text-[9px] tracking-[0.25em] text-muted-foreground">
-            REWARD: <span className="text-white">{item.reward.toUpperCase()}</span>
-          </p>
         </div>
-      </div>
     </li>
   )
 }
@@ -67,7 +67,7 @@ export function JourneySection() {
   return (
     <section id="journey" className="relative px-6 py-24 md:px-10 md:py-32">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading index="05" kicker="PROGRESSION" title="THE JOURNEY" description="Every level unlocked along the way. Scroll to progress through the campaign." />
+        <SectionHeading index="06" kicker="PROGRESSION" title="THE JOURNEY" description="Every level unlocked along the way. Scroll to progress through the campaign." />
         <div ref={ref} className="relative">
           <div aria-hidden="true" className="absolute bottom-14 left-6 top-6 w-px bg-white/10 md:left-1/2 md:-translate-x-1/2">
             <div
